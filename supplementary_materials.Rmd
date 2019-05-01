@@ -70,7 +70,7 @@ c %>%
   kable_styling(bootstrap_options = c("striped", "hover","condensed"))
 ```
 
-# Specialty disambiguation {.tabset .tabset-pills}
+# Specialty disambiguation {.tabset}
 
 ## Specialty algorithm
 
@@ -86,11 +86,31 @@ ms %>% arrange(mspec,desc(n)) %>%
   kable_styling(bootstrap_options = c("striped", "hover","condensed"))
 ```
 
-# Geographical regions
+# Geographical regions {.tabset}
 
-# Variable specifications
+## Attention
+
+The attached table is long. To view it, click the tab above.
+
+## Table of geographical regions
+
+```{r message=F}
+ga <- read_tsv("geo_area.txt")
+ga %>%
+  kable(caption="**Supplementary Table S3.** Groupings of countries by geographical region.") %>%
+  kable_styling(bootstrap_options = c("striped", "hover","condensed"))
+```
 
 # Regression results
+
+# Literature review
+
+```{r message=F}
+rev <- read_tsv("review.txt")
+rev %>% 
+  kable() %>%
+  kable_styling(bootstrap_options = c("striped", "hover","condensed"))
+```
 
 
 # References
