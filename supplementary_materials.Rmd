@@ -1,5 +1,10 @@
 ---
 title: "Supplementary Materials"
+knit: (function(input_file, encoding) {
+  out_dir <- 'docs';
+  rmarkdown::render(input_file,
+ encoding=encoding,
+ output_file=file.path(dirname(input_file), out_dir, 'index.html'))})
 author: "Jens Peter Andersen, Jesper Wiborg Schneider, Reshma Jagsi, Mathias Wullum Nielsen"
 date: "2019-05-01"
 output: html_document
@@ -9,22 +14,17 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+# Supplementary Text
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+## Matched papers per journal
+Supplementary Figure S1 shows the percentage of papers per journal included in the analysis. The excluded papers are a combination of missing document types in Web of Science and missing name information. Journals publishing document types which are included in PubMed Medline but not Web of Science (e.g. comments, notes) can account for a large exclusion percentage for many journals. For other journals, first name information is consistently missing for some or all years.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+## Gender determination
+The online tool Gender-API was used to estimate the gender of all first-name and country pairings. This pairing is important as the gender connotations for some first names vary by language and culture. As an example, the name Kim is typically male in Danish, female in English-speaking countries, and unisex in Korean. Gender-API uses co-occurrences of names and countries on social media to provide a precision score for each assignment, which we use to calculate a probability of an author being female, f. We exclude all authors from this analysis who only have initials registered in Web of Science, or who are from a country with unreliable gender prediction (See Supplementary Figure S2).
 
-```{r cars}
-summary(cars)
-```
+## Country sampling and bias
+We calculated a reliability score for each country, by determining the precision score of the Gender-API name assignment for all authors per country. Names with precision scores >= .8 are considered reliable, and the reliability for the country is the average reliability hereof. We use the reliability distribution in Supplementary Figure S2 to heuristically set a cut-off at .9 reliability for inclusion in the analysis. The excluded countries are listed in Supplementary Table S4. For some of the East-Asian countries, the explanation for the low reliability lies in the unisex-naming culture of these countries. For other countries, the probable explanation is the absence of comprehensive social media data from these countries.
 
-## Including Plots
+## Specialty disambiguation
+To adjust for medical specialties, papers need to be classified, preferably as one specialty per paper. Such a classification is not readily available in PubMed nor Web of Science. Darmoni et al.1 designed an algorithm allowing such classifications from MeSH terms assigned to papers. The algorithm operates on a MeSH-specialty assignment table1,2 (Darmoni, 2006; Gehanno et al. 2011) which is available through an API at http://www.hetop.eu. For each MeSH term assigned to a paper, the corresponding specialties are counted, so that the paper is classified by the most common specialty. The counts are weighted by whether the MeSH term is a major index term (full weight) or not (half weight). The list of specialties is more detailed than most other such lists, containing a total of 124 specialties. Table S5 specifies the frequency of papers per specialty. We have summarised this list into five main specialties, based on the expert field knowledge of R.J. These assignments are also available from supplementary Table S2.
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
