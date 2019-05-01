@@ -7,19 +7,39 @@ knit: (function(input_file, encoding) {
  output_file=file.path(dirname(input_file), out_dir, 'index.html'))})
 author: "Jens Peter Andersen, Jesper Wiborg Schneider, Reshma Jagsi, Mathias Wullum Nielsen"
 date: "2019-05-01"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_float: 
+      collapsed: false
+    toc_depth: 2
+    number_sections: true
 bibliography: supp.bib
 csl: elife.csl
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
+require(tidyverse)
 ```
 
-# Supplementary Text
+# Matched papers per journal
+Supplementary Figure S1 shows the percentage of papers per journal included in the analysis. The excluded papers are a combination of missing document types in Web of Science and missing name information. Journals publishing document types which are included in PubMed Medline but not Web of Science (e.g. comments, notes) can account for a large exclusion percentage for many journals. For other journals, first name information is consistently missing for some or all years. Here showing journals with > 50 papers only.
 
-## Matched papers per journal
-Supplementary Figure S1 shows the percentage of papers per journal included in the analysis. The excluded papers are a combination of missing document types in Web of Science and missing name information. Journals publishing document types which are included in PubMed Medline but not Web of Science (e.g. comments, notes) can account for a large exclusion percentage for many journals. For other journals, first name information is consistently missing for some or all years.
+```{r message=F, fig.cap = "Supplementary Figure S1. Percentage of papers per journal included in the analysis."}
+j <- read_tsv("journal_supp.txt")
+j$p <- j$included / j$n
+j %>%
+  filter(n > 50) %>%
+  arrange(desc(p)) %>%
+  mutate(x = dense_rank(desc(p))) %>%
+  ggplot(aes(x=x,y = p)) + geom_line() +
+  scale_x_continuous("Journal rank") + 
+  scale_y_continuous("Proportion of papers per journal") + 
+  theme_bw()
+```
+
+
 
 ## Gender determination
 The online tool Gender-API was used to estimate the gender of all first-name and country pairings. This pairing is important as the gender connotations for some first names vary by language and culture. As an example, the name Kim is typically male in Danish, female in English-speaking countries, and unisex in Korean. Gender-API uses co-occurrences of names and countries on social media to provide a precision score for each assignment, which we use to calculate a probability of an author being female, f. We exclude all authors from this analysis who only have initials registered in Web of Science, or who are from a country with unreliable gender prediction (See Supplementary Figure S2).
