@@ -330,7 +330,18 @@ $(document).ready(function () {
 </div>
 <div id="specialty-disambiguation" class="section level2">
 <h2>Specialty disambiguation</h2>
-<p>To adjust for medical specialties, papers need to be classified, preferably as one specialty per paper. Such a classification is not readily available in PubMed nor Web of Science. Darmoni et al.1 designed an algorithm allowing such classifications from MeSH terms assigned to papers. The algorithm operates on a MeSH-specialty assignment table1,2 (Darmoni, 2006; Gehanno et al. 2011) which is available through an API at <a href="http://www.hetop.eu" class="uri">http://www.hetop.eu</a>. For each MeSH term assigned to a paper, the corresponding specialties are counted, so that the paper is classified by the most common specialty. The counts are weighted by whether the MeSH term is a major index term (full weight) or not (half weight). The list of specialties is more detailed than most other such lists, containing a total of 124 specialties. Table S5 specifies the frequency of papers per specialty. We have summarised this list into five main specialties, based on the expert field knowledge of R.J. These assignments are also available from supplementary Table S2.</p>
+<p>To adjust for medical specialties, papers need to be classified, preferably as one specialty per paper. Such a classification is not readily available in PubMed nor Web of Science. Darmoni et al.1 designed an algorithm allowing such classifications from MeSH terms assigned to papers. The algorithm operates on a MeSH-specialty assignment table1,2 <span class="citation">(Darmoni et al., 2006; Gehanno et al., 2011)</span> which is available through an API at <a href="http://www.hetop.eu" class="uri">http://www.hetop.eu</a>. For each MeSH term assigned to a paper, the corresponding specialties are counted, so that the paper is classified by the most common specialty. The counts are weighted by whether the MeSH term is a major index term (full weight) or not (half weight). The list of specialties is more detailed than most other such lists, containing a total of 124 specialties. Table S5 specifies the frequency of papers per specialty. We have summarised this list into five main specialties, based on the expert field knowledge of R.J. These assignments are also available from supplementary Table S2.</p>
+</div>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<div id="refs" class="references">
+<div id="ref-Darmoni2006">
+<p>Darmoni SJ, Névéol A, Renard J-M, Gehanno J-F, Soualmia LF, Dahamna B, Thirion B. 2006. A MEDLINE categorization algorithm. <em>BMC Medical Informatics and Decision Making</em> <strong>6</strong>:7–7. doi:<a href="https://doi.org/10.1186/1472-6947-6-7">10.1186/1472-6947-6-7</a></p>
+</div>
+<div id="ref-Gehanno2011">
+<p>Gehanno J-F, Ladner J, Rollin L, Dahamna B, Darmoni SJ. 2011. How are the different specialties represented in the major journals in general medicine? <em>BMC Medical Informatics and Decision Making</em> <strong>11</strong>. doi:<a href="https://doi.org/10.1186/1472-6947-11-3">10.1186/1472-6947-11-3</a></p>
+</div>
 </div>
 </div>
 

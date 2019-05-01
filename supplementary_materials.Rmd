@@ -8,6 +8,8 @@ knit: (function(input_file, encoding) {
 author: "Jens Peter Andersen, Jesper Wiborg Schneider, Reshma Jagsi, Mathias Wullum Nielsen"
 date: "2019-05-01"
 output: html_document
+bibliography: supp.bib
+csl: elife.csl
 ---
 
 ```{r setup, include=FALSE}
@@ -26,5 +28,7 @@ The online tool Gender-API was used to estimate the gender of all first-name and
 We calculated a reliability score for each country, by determining the precision score of the Gender-API name assignment for all authors per country. Names with precision scores >= .8 are considered reliable, and the reliability for the country is the average reliability hereof. We use the reliability distribution in Supplementary Figure S2 to heuristically set a cut-off at .9 reliability for inclusion in the analysis. The excluded countries are listed in Supplementary Table S4. For some of the East-Asian countries, the explanation for the low reliability lies in the unisex-naming culture of these countries. For other countries, the probable explanation is the absence of comprehensive social media data from these countries.
 
 ## Specialty disambiguation
-To adjust for medical specialties, papers need to be classified, preferably as one specialty per paper. Such a classification is not readily available in PubMed nor Web of Science. Darmoni et al.1 designed an algorithm allowing such classifications from MeSH terms assigned to papers. The algorithm operates on a MeSH-specialty assignment table1,2 (Darmoni, 2006; Gehanno et al. 2011) which is available through an API at http://www.hetop.eu. For each MeSH term assigned to a paper, the corresponding specialties are counted, so that the paper is classified by the most common specialty. The counts are weighted by whether the MeSH term is a major index term (full weight) or not (half weight). The list of specialties is more detailed than most other such lists, containing a total of 124 specialties. Table S5 specifies the frequency of papers per specialty. We have summarised this list into five main specialties, based on the expert field knowledge of R.J. These assignments are also available from supplementary Table S2.
+To adjust for medical specialties, papers need to be classified, preferably as one specialty per paper. Such a classification is not readily available in PubMed nor Web of Science. Darmoni et al.1 designed an algorithm allowing such classifications from MeSH terms assigned to papers. The algorithm operates on a MeSH-specialty assignment table1,2 [@Darmoni2006;@Gehanno2011] which is available through an API at http://www.hetop.eu. For each MeSH term assigned to a paper, the corresponding specialties are counted, so that the paper is classified by the most common specialty. The counts are weighted by whether the MeSH term is a major index term (full weight) or not (half weight). The list of specialties is more detailed than most other such lists, containing a total of 124 specialties. Table S5 specifies the frequency of papers per specialty. We have summarised this list into five main specialties, based on the expert field knowledge of R.J. These assignments are also available from supplementary Table S2.
+
+# References
 
