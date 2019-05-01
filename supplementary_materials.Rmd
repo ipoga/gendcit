@@ -21,12 +21,13 @@ csl: elife.csl
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 require(tidyverse)
+require(kableExtra)
 ```
 
 # Matched papers per journal
 Supplementary Figure S1 shows the percentage of papers per journal included in the analysis. The excluded papers are a combination of missing document types in Web of Science and missing name information. Journals publishing document types which are included in PubMed Medline but not Web of Science (e.g. comments, notes) can account for a large exclusion percentage for many journals. For other journals, first name information is consistently missing for some or all years. Here showing journals with > 50 papers only.
 
-```{r message=F, fig.cap = "Supplementary Figure S1. Percentage of papers per journal included in the analysis."}
+```{r message=F, fig.cap = "**Supplementary Figure S1.** Percentage of papers per journal included in the analysis."}
 j <- read_tsv("journal_supp.txt")
 j$p <- j$included / j$n
 j %>%
@@ -41,14 +42,55 @@ j %>%
 
 
 
-## Gender determination
-The online tool Gender-API was used to estimate the gender of all first-name and country pairings. This pairing is important as the gender connotations for some first names vary by language and culture. As an example, the name Kim is typically male in Danish, female in English-speaking countries, and unisex in Korean. Gender-API uses co-occurrences of names and countries on social media to provide a precision score for each assignment, which we use to calculate a probability of an author being female, f. We exclude all authors from this analysis who only have initials registered in Web of Science, or who are from a country with unreliable gender prediction (See Supplementary Figure S2).
+# Gender determination
+The online tool Gender-API was used to estimate the gender of all first-name and country pairings. This pairing is important as the gender connotations for some first names vary by language and culture. As an example, the name Kim is typically male in Danish, female in English-speaking countries, and unisex in Korean. Gender-API uses co-occurrences of names and countries on social media to provide a precision score for each assignment, which we use to calculate a probability of an author being female, _f_. We exclude all authors from this analysis who only have initials registered in Web of Science, or who are from a country with unreliable gender prediction (See Supplementary Figure S2).
 
 ## Country sampling and bias
-We calculated a reliability score for each country, by determining the precision score of the Gender-API name assignment for all authors per country. Names with precision scores >= .8 are considered reliable, and the reliability for the country is the average reliability hereof. We use the reliability distribution in Supplementary Figure S2 to heuristically set a cut-off at .9 reliability for inclusion in the analysis. The excluded countries are listed in Supplementary Table S4. For some of the East-Asian countries, the explanation for the low reliability lies in the unisex-naming culture of these countries. For other countries, the probable explanation is the absence of comprehensive social media data from these countries.
+We calculated a reliability score for each country, by determining the precision score of the Gender-API name assignment for all authors per country. Names with precision scores >= .8 are considered reliable, and the reliability for the country is the average reliability hereof. We use the reliability distribution in Supplementary Figure S2 to heuristically set a cut-off at .9 reliability for inclusion in the analysis. The excluded countries are listed in Supplementary Table S1. For some of the East-Asian countries, the explanation for the low reliability lies in the unisex-naming culture of these countries. For other countries, the probable explanation is the absence of comprehensive social media data from these countries.
 
-## Specialty disambiguation
-To adjust for medical specialties, papers need to be classified, preferably as one specialty per paper. Such a classification is not readily available in PubMed nor Web of Science. Darmoni et al.1 designed an algorithm allowing such classifications from MeSH terms assigned to papers. The algorithm operates on a MeSH-specialty assignment table1,2 [@Darmoni2006;@Gehanno2011] which is available through an API at http://www.hetop.eu. For each MeSH term assigned to a paper, the corresponding specialties are counted, so that the paper is classified by the most common specialty. The counts are weighted by whether the MeSH term is a major index term (full weight) or not (half weight). The list of specialties is more detailed than most other such lists, containing a total of 124 specialties. Table S5 specifies the frequency of papers per specialty. We have summarised this list into five main specialties, based on the expert field knowledge of R.J. These assignments are also available from supplementary Table S2.
+```{r message=F, fig.cap="**Supplementary Figure S2.** Reliability of gender assignment per country, shown as the rank of countries."}
+c.n <- read_tsv("country_n.txt")
+c.r <- read_tsv("country_rely.txt")
+c <- c.n %>% inner_join(c.r,by="country")
+c$p_rely <- c$n_rely / c$n
+c %>%
+  arrange(p_rely) %>%
+  mutate(x = dense_rank(p_rely)) %>%
+  ggplot(aes(x=x,y = p_rely)) + geom_point(shape = 1) +
+  geom_hline(yintercept = .9) +
+  scale_x_continuous("Country rank") + 
+  scale_y_continuous("Proportion of reliable names") + 
+  theme_bw()
+
+c %>%
+  filter(p_rely <= .9) %>%
+  arrange(p_rely) %>%
+  select(country,p_rely) %>%
+  kable(caption="**Supplementary Table S1.** Excluded countries due to unreliable gender assignments from first name.", col.names = c("Country","Reliability"), digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "hover","condensed"))
+```
+
+# Specialty disambiguation {.tabset .tabset-pills}
+
+## Specialty algorithm
+
+To adjust for medical specialties, papers need to be classified, preferably as one specialty per paper. Such a classification is not readily available in PubMed nor Web of Science. Darmoni et al. [@Darmoni2006] designed an algorithm allowing such classifications from MeSH terms assigned to papers. The algorithm operates on a MeSH-specialty assignment table [@Darmoni2006;@Gehanno2011] which is available through an API at http://www.hetop.eu. For each MeSH term assigned to a paper, the corresponding specialties are counted, so that the paper is classified by the most common specialty. The counts are weighted by whether the MeSH term is a major index term (full weight) or not (half weight). The list of specialties is more detailed than most other such lists, containing a total of 124 specialties. Table S5 specifies the frequency of papers per specialty. We have summarised this list into five main specialties, based on the expert field knowledge of R.J. These assignments are also available from supplementary Table S2.
+
+## Specialty table
+
+```{r message=F}
+ms <- read_tsv("mspecialty.txt")
+ms <- ms[,c(2,1,3)]
+ms %>% arrange(mspec,desc(n)) %>%
+  kable(caption = "**Supplementary Table S2.** List of specialty and main specialty designation, and number of papers per specialty for the full sample.",col.names = c("Specialty","Main specialty","Number of papers")) %>%
+  kable_styling(bootstrap_options = c("striped", "hover","condensed"))
+```
+
+# Geographical regions
+
+# Variable specifications
+
+# Regression results
+
 
 # References
-
