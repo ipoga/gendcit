@@ -109,7 +109,7 @@ ga %>%
 ```{r message=F}
 load("regression_table_main.Rdata")
 rt.final %>%
-  kable(digits = 2, col.names = c("Outcome","Model","Predictor","Estimate","Std. Error","EE","EE.LCL","EE.UCL","Estimate","Std. Error","EE","EE.LCL","EE.UCL"),caption = "**Supplementary Table S4. Tweedie regression results") %>%
+  kable(digits = c(0,0,0,2,4,2,2,2,2,4,2,2,2), col.names = c("Outcome","Model","Predictor","Estimate","Std. Error","EE","EE.LCL","EE.UCL","Estimate","Std. Error","EE","EE.LCL","EE.UCL"),caption = "**Supplementary Table S4.** Tweedie regression results") %>%
   kable_styling(bootstrap_options = c("striped", "hover","condensed"),font_size = 11) %>%
   add_header_above(c(" "=3, "Raw parameters" = 5, "Standardized parameters" = 5)) %>%
   footnote(general = c("EE : Exponentiated estimate",
@@ -123,7 +123,28 @@ rt.final %>%
 
 ## Logistic regression
 
+```{r message=F}
+load("regression_table_logit.Rdata")
+lrt.final %>%
+  kable(digits = c(0,0,0,2,4,2,2,2,2,4,2,2,2), col.names = c("Outcome","Model","Predictor","Estimate","Std. Error","OR","OR.LCL","OR.UCL","Estimate","Std. Error","OR","OR.LCL","OR.UCL"),caption = "**Supplementary Table S7.** Logistic regression results") %>%
+  kable_styling(bootstrap_options = c("striped", "hover","condensed"),font_size = 11) %>%
+  add_header_above(c(" "=3, "Raw parameters" = 5, "Standardized parameters" = 5)) %>%
+  footnote(general = c("OR : Odds ratios",
+           "OR.LCL : Lower confidence limit of odds ratios",
+           "OR.UCL : Upper confidence limit of odds ratios"))
+```
+
 ## Negative binomial regression results
+
+```{r message=F}
+load("regression_table_nb.Rdata")
+nb.rt.final %>%
+  kable(digits = c(0,0,0,2,4,2,2,2), col.names = c("Outcome","Model","Predictor","Estimate","Std. Error","OR","OR.LCL","OR.UCL"),caption = "**Supplementary Table S8.** Regression results for the three negative binomial regressions with times cited (CS) as outcome.") %>%
+  kable_styling(bootstrap_options = c("striped", "hover","condensed"),font_size = 11) %>%
+  footnote(general = c("OR : Odds ratios",
+           "OR.LCL : Lower confidence limit of odds ratios",
+           "OR.UCL : Upper confidence limit of odds ratios"))
+```
 
 # Literature review
 
