@@ -9,6 +9,7 @@ author: "Jens Peter Andersen, Jesper Wiborg Schneider, Reshma Jagsi, Mathias Wul
 date: "2019-05-01"
 output: 
   html_document:
+    theme: readable
     toc: true
     toc_float: 
       collapsed: false
@@ -101,7 +102,26 @@ ga %>%
   kable_styling(bootstrap_options = c("striped", "hover","condensed"))
 ```
 
-# Regression results
+# Regression results {.tabset}
+
+## Tweedie regression results
+
+```{r message=F}
+load("regression_table_main.Rdata")
+rt.final %>%
+  kable(digits = 2, col.names = c("Outcome","Model","Predictor","Estimate","Std. Error","EE","EE.LCL","EE.UCL","Estimate","Std. Error","EE","EE.LCL","EE.UCL")) %>%
+  kable_styling(bootstrap_options = c("striped", "hover","condensed")) %>%
+  add_header_above(c(" "=3, "Raw parameters" = 5, "Standardized parameters" = 5)) %>%
+  footnote(general = c("EE : Exponentiated estimate",
+           "EE.LCL : Lower confidence limit of exponentiated estimate",
+           "EE.UCL : Upper confidence limit of exponentiated estimate"))
+```
+
+## Standardized Tweedie regression results
+
+## Tweedie regression on unmatched data
+
+## Negative binomial regression results
 
 # Literature review
 
