@@ -109,7 +109,7 @@ ga %>%
 rev <- read_tsv("review.txt")
 rev %>% 
   kable() %>%
-  kable_styling(bootstrap_options = c("striped", "hover","condensed","responsive"))
+  kable_styling(bootstrap_options = c("striped", "hover","condensed","responsive"),font_size = 10)
 ```
 
 
