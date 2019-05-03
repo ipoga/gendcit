@@ -122,7 +122,7 @@ rt.final %>%
 ```{r message=F}
 load("regression_table_tw_full.Rdata")
 ft.rt.final %>%
-  kable(digits = c(0,0,0,2,4,2,2,2), col.names = c("Outcome","Model","Predictor","Estimate","Std. Error","EE","EE.LCL","EE.UCL"),caption = "**Supplementary Table S8.** Regression results for Tweedie regressions on the full, unmatched sample, using NCS as outcome.") %>%
+  kable(digits = c(0,0,0,2,4,2,2,2), col.names = c("Outcome","Model","Predictor","Estimate","Std. Error","EE","EE.LCL","EE.UCL"),caption = "**Supplementary Table S5.** Regression results for Tweedie regressions on the full, unmatched sample, using NCS as outcome.") %>%
   kable_styling(bootstrap_options = c("striped", "hover","condensed"),font_size = 11) %>%
   footnote(general = c("EE : Exponentiated estimate",
            "EE.LCL : Lower confidence limit of exponentiated estimate",
