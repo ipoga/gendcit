@@ -94,7 +94,7 @@ p3 <- qout %>%
 p4 <- qb %>%
   gather(key="Sample",value="Indicator",p1,p2,p3) %>%
   ggplot(aes(x=x,y=Indicator,color=Sample)) + geom_line(lty=2) + geom_point(shape=1) +
-  scale_y_continuous("Upper bounds of MNCS Journal per quantile, log-scale",trans="log10") + 
+  scale_y_continuous("Upper bounds of MNCS Journal, log-scale",trans="log10") + 
   scale_x_continuous("Quantiles, MNCS_journal",minor_breaks = seq(0 , 1, .05), breaks = seq(0, 1, .1)) + 
   theme_bw() + 
   annotation_logticks(base = 10, sides = "l")
@@ -108,7 +108,7 @@ p5 <- qout %>%
   annotation_logticks(base = 10, sides = "l")
 
 p1 * theme(legend.position = "none") + p2 * theme(legend.position = "bottom") + plot_layout(ncol=1)
-ggsave("quantile_plots_a.png",dpi=300,height=5,width=7)
+ggsave("quantile_plots_a.png",dpi=300,height=7,width=7)
 
 p3 * theme(legend.position = "bottom") + (p4 * theme(legend.position = "none") + p5 * theme(legend.position = "none")) + plot_layout(ncol=1)
-ggsave("quantile_plots_b.png",dpi=300,height=5,width=7)
+ggsave("quantile_plots_b.png",dpi=300,height=7,width=7)
