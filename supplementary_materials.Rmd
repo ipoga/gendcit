@@ -119,7 +119,29 @@ rt.final %>%
 
 ## Tweedie regression on unmatched data
 
+```{r message=F}
+load("regression_table_tw_full.Rdata")
+ft.rt.final %>%
+  kable(digits = c(0,0,0,2,4,2,2,2), col.names = c("Outcome","Model","Predictor","Estimate","Std. Error","EE","EE.LCL","EE.UCL"),caption = "**Supplementary Table S8.** Regression results for Tweedie regressions on the full, unmatched sample, using NCS as outcome.") %>%
+  kable_styling(bootstrap_options = c("striped", "hover","condensed"),font_size = 11) %>%
+  footnote(general = c("EE : Exponentiated estimate",
+           "EE.LCL : Lower confidence limit of exponentiated estimate",
+           "EE.UCL : Upper confidence limit of exponentiated estimate"))
+```
+
 ## Tweedie regression on MNCS Journal quantiles
+
+```{r message=F}
+load("regression_table_mncs_quantile.Rdata")
+mq.rt.final %>%
+  kable(digits = c(0,0,0,2,4,2,2,2,2,4,2,2,2), col.names = c("Outcome","Model","Predictor","Estimate","Std. Error","EE","EE.LCL","EE.UCL"),caption = "**Supplementary Table S6.** Tweedie regression of standardized parameters, using MNCS Journal quantiles rather than measurements.") %>%
+  kable_styling(bootstrap_options = c("striped", "hover","condensed"),font_size = 11) %>%
+  footnote(general = c("EE : Exponentiated estimate",
+           "EE.LCL : Lower confidence limit of exponentiated estimate",
+           "EE.UCL : Upper confidence limit of exponentiated estimate",
+           "mncs_j_high : MNCS Journal scores in and above the 95th percentile",
+           "mncs_j_med: MNCS Journal scores from the 50th to the 94th percentile"))
+```
 
 ## Logistic regression
 
