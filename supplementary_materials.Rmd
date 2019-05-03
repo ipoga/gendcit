@@ -71,6 +71,31 @@ c %>%
   kable_styling(bootstrap_options = c("striped", "hover","condensed"),font_size = 11)
 ```
 
+## Gender representativity by year
+
+```{r message=F, fig.cap = "**Supplementary Figure S3.** Proportion of papers with gender assignment for all authors. Reported as function of all sampled papers (p_pubmed) and proportion of all papers matched to Web of Science (p_wos)"}
+load("full_data_prepped.Rdata")
+gpy <- read_tsv("gender_per_year.txt")
+gpy.g <- fd %>%
+  filter(py >= 2008) %>%  #76 pubs are listed as 2007, but were found when limiting search to 2008
+  group_by(py) %>%
+  summarize(n_gender = n())
+gpy <- gpy %>% inner_join(gpy.g, by = "py")
+gpy$p_pubmed <- gpy$n_gender / gpy$n_pubmed
+gpy$p_wos <- gpy$n_gender / gpy$n_wos
+
+gpy %>%
+  gather("database","v",p_pubmed,p_wos) %>%
+  ggplot(aes(x = py, y = v, color = database, group = database)) + 
+  geom_point(shape = 1) + 
+  geom_line(lty = 2) + 
+  scale_y_continuous("Proportion with gender (in sample)",limits=c(0,1)) + 
+  scale_x_continuous("Publication year") + 
+  scale_color_discrete("Source") + 
+  theme_bw()
+```
+
+
 # Specialty disambiguation {.tabset}
 
 ## Specialty algorithm
