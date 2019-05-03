@@ -257,3 +257,26 @@ lrt3.c <- lrt3 %>% inner_join(lrt.s3,by=c("Outcome","Model","Predictor"))
 
 lrt.final <- rbind(lrt1.c,lrt2.c,lrt3.c)
 save(lrt.final,file="regression_table_logit.Rdata")
+
+disp.tw <- c(s1$dispersion,s2$dispersion,s3$dispersion)
+disp.tw.s <- c(s.s1$dispersion,s.s2$dispersion,s.s3$dispersion)
+disp.log <- c(ls1$dispersion,ls2$dispersion,ls3$dispersion)
+disp.log.s <- c(ls.s1$dispersion,ls.s2$dispersion,ls.s3$dispersion)
+
+#-------------------------------------
+# Gather dispersion table - this part
+# will only work if you run all regression
+# prior to execution
+
+disp <- rbind(disp.tw,disp.tw.s,disp.tw.full,disp.tw.mncs,disp.log,disp.log.s,disp.nb)
+disp.t <- tibble(disp.name = c("Tweedie regression, raw params",
+                          "Tweedie regression, standardized params",
+                          "Tweedie regression, unmatched data",
+                          "Tweedie regression, MNCS Journal quantiles",
+                          "Logistic regression, raw params",
+                          "Logistic regression, standardized params",
+                          "Negative binomial regression"), 
+                 s1 = disp[,1],
+                 s2 = disp[,2],
+                 s3 = disp[,3])
+save(disp.t,file="dispersion_data.Rdata")

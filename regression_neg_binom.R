@@ -62,3 +62,5 @@ nb.rt3 <- tibble(Outcome = "CS",Model = "Sample 3",
 
 nb.rt.final <- rbind(nb.rt1,nb.rt2,nb.rt3)
 save(nb.rt.final,file="regression_table_nb.Rdata")
+
+disp.nb <- c(nbs1$dispersion,nbs2$dispersion,nbs3$dispersion)

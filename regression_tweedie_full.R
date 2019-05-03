@@ -78,3 +78,6 @@ rt3 <- tibble(Outcome = "NCS",Model = "F_Both",
 
 ft.rt.final <- rbind(rt1,rt2,rt3)
 save(ft.rt.final,file="regression_table_tw_full.Rdata")
+
+disp.tw.full <- c(s1$dispersion,s2$dispersion,s3$dispersion)
+disp.tw.full.s <- c(s.s1$dispersion,s.s2$dispersion,s.s3$dispersion)

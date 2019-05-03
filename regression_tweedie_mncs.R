@@ -133,3 +133,6 @@ rt3 <- tibble(Outcome = "NCS",Model = "Sample 3",
 
 mq.rt.final <- rbind(rt1,rt2,rt3)
 save(mq.rt.final,file="regression_table_mncs_quantile.Rdata")
+
+disp.tw.mncs <- c(s1$dispersion,s2$dispersion,s3$dispersion)
+disp.tw.mncs.s <- c(s.s1$dispersion,s.s2$dispersion,s.s3$dispersion)

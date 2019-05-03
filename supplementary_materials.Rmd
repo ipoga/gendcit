@@ -68,7 +68,7 @@ c %>%
   arrange(p_rely) %>%
   select(country,p_rely) %>%
   kable(caption="**Supplementary Table S1.** Excluded countries due to unreliable gender assignments from first name.", col.names = c("Country","Reliability"), digits = 2) %>%
-  kable_styling(bootstrap_options = c("striped", "hover","condensed"))
+  kable_styling(bootstrap_options = c("striped", "hover","condensed"),font_size = 11)
 ```
 
 # Specialty disambiguation {.tabset}
@@ -84,7 +84,7 @@ ms <- read_tsv("mspecialty.txt")
 ms <- ms[,c(2,1,3)]
 ms %>% arrange(mspec,desc(n)) %>%
   kable(caption = "**Supplementary Table S2.** List of specialty and main specialty designation, and number of papers per specialty for the full sample.",col.names = c("Specialty","Main specialty","Number of papers")) %>%
-  kable_styling(bootstrap_options = c("striped", "hover","condensed"))
+  kable_styling(bootstrap_options = c("striped", "hover","condensed"),font_size = 11)
 ```
 
 # Geographical regions {.tabset}
@@ -99,7 +99,7 @@ The attached table is long. To view it, click the tab above.
 ga <- read_tsv("geo_area.txt")
 ga %>%
   kable(caption="**Supplementary Table S3.** Groupings of countries by geographical region.") %>%
-  kable_styling(bootstrap_options = c("striped", "hover","condensed"))
+  kable_styling(bootstrap_options = c("striped", "hover","condensed"),font_size = 11)
 ```
 
 # Regression results {.tabset}
@@ -167,6 +167,16 @@ nb.rt.final %>%
            "OR.LCL : Lower confidence limit of odds ratios",
            "OR.UCL : Upper confidence limit of odds ratios"))
 ```
+
+## Model fit
+
+```{r message=F}
+load("dispersion_data.Rdata")
+disp.t %>% 
+  kable(col.names = c("Regression model","Sample 1","Sample 2","Sample 3"),digits = 3,caption = "**Supplementary Table S9.** Dispersion parameters for all regressions.") %>%
+  kable_styling(bootstrap_options = c("striped", "hover","condensed","responsive"),font_size = 11)
+```
+
 
 # Literature review
 
