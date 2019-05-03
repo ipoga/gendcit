@@ -40,18 +40,19 @@ qb <- tibble(x = quants,p1=q1,p2=q2,p3=q3)
 
 p1 <- qout %>%
   gather(key="Sample",value="Indicator",p1,p2,p3) %>%
-  ggplot(aes(x=quant,y=Indicator,color=Sample)) + geom_line() +
+  ggplot(aes(x=quant,y=Indicator,color=Sample)) + geom_line(lty=2) + geom_point(shape=1) +
   scale_y_continuous("Mean proportion of self-citations per paper") +
-  scale_x_continuous("Quantiles, NCS") + 
+  scale_x_continuous("Quantiles, NCS",minor_breaks = seq(0 , 1, .05), breaks = seq(0, 1, .1)) + 
   theme_bw()
 
 p2 <- qb %>%
   gather(key="Sample",value="Indicator",p1,p2,p3) %>%
-  ggplot(aes(x=x,y=Indicator,color=Sample)) + geom_line() + 
+  ggplot(aes(x=x,y=Indicator,color=Sample)) + geom_line(lty=2) + geom_point(shape=1) +
   scale_y_log10("Upper bounds of NCS per quantile, log-scale") + 
-  scale_x_continuous("Quantiles, NCS") + 
+  scale_x_continuous("Quantiles, NCS",minor_breaks = seq(0 , 1, .05), breaks = seq(0, 1, .1)) + 
   scale_color_discrete(labels=c("Sample 1","Sample 2","Sample 3")) +
-  theme_bw()
+  theme_bw() + 
+  annotation_logticks(base = 10, sides = "l")
 
 #----------------------------------------------------------
 # Case as function of MNCS Journal
@@ -84,24 +85,30 @@ qb <- tibble(x = quants,p1=q1,p2=q2,p3=q3)
 
 p3 <- qout %>%
   gather(key="Sample",value="Indicator",p1,p2,p3) %>%
-  ggplot(aes(x=quant,y=Indicator,color=Sample)) + geom_line() + 
+  ggplot(aes(x=quant,y=Indicator,color=Sample)) + geom_line(lty=2) + geom_point(shape=1) +
   scale_y_continuous("Percentage of case") + 
-  scale_x_continuous("Quantiles, MNCS_Journal") + 
+  scale_x_continuous("Quantiles, MNCS_Journal",minor_breaks = seq(0 , 1, .05), breaks = seq(0, 1, .1)) + 
+  scale_color_discrete(labels=c("Sample 1","Sample 2","Sample 3")) +
   theme_bw()
 
 p4 <- qb %>%
   gather(key="Sample",value="Indicator",p1,p2,p3) %>%
-  ggplot(aes(x=x,y=Indicator,color=Sample)) + geom_line() + 
+  ggplot(aes(x=x,y=Indicator,color=Sample)) + geom_line(lty=2) + geom_point(shape=1) +
   scale_y_continuous("Upper bounds of MNCS Journal per quantile, log-scale",trans="log10") + 
-  scale_x_continuous("Quantiles, MNCS_journal") + 
-  theme_bw()
+  scale_x_continuous("Quantiles, MNCS_journal",minor_breaks = seq(0 , 1, .05), breaks = seq(0, 1, .1)) + 
+  theme_bw() + 
+  annotation_logticks(base = 10, sides = "l")
 
 p5 <- qout %>%
   gather(key="Sample",value="Indicator",m1,m2,m3) %>%
-  ggplot(aes(x=quant,y=Indicator,color=Sample)) + geom_line() + 
+  ggplot(aes(x=quant,y=Indicator,color=Sample)) + geom_line(lty=2) + geom_point(shape=1) +
   scale_y_continuous("Mean NCS per quantile, log-scale",trans="log10") + 
-  scale_x_continuous("Quantiles, MNCS_journal") + 
-  theme_bw()
+  scale_x_continuous("Quantiles, MNCS_journal",minor_breaks = seq(0 , 1, .05), breaks = seq(0, 1, .1)) + 
+  theme_bw() + 
+  annotation_logticks(base = 10, sides = "l")
 
-p1 * theme(legend.position = "none") + p3 * theme(legend.position = "none") + p2 * theme(legend.position = "bottom") + (p4 + p5)  * theme(legend.position = "none") + plot_layout(ncol=2,nrow=2,heights=c(9,4))
-ggsave("quantile_plots.png",dpi=600,height=8,width=10)
+p1 * theme(legend.position = "none") + p2 * theme(legend.position = "bottom") + plot_layout(ncol=1)
+ggsave("quantile_plots_a.png",dpi=300,height=5,width=7)
+
+p3 * theme(legend.position = "bottom") + (p4 * theme(legend.position = "none") + p5 * theme(legend.position = "none")) + plot_layout(ncol=1)
+ggsave("quantile_plots_b.png",dpi=300,height=5,width=7)
