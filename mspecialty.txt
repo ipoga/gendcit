@@ -1,0 +1,122 @@
+mspec	spec	n
+basic science	anatomy	31
+basic science	bacteriology	32552
+basic science	biochemistry	143
+basic science	biomedical engineering	27
+basic science	biophysics	9
+basic science	cytology	53840
+basic science	developmental biology and medicine	109
+basic science	disease transmission	224
+basic science	economics	3249
+basic science	education	2437
+basic science	embryology	618
+basic science	environment and public health	63147
+basic science	environnement	1599
+basic science	epidemiology	58666
+basic science	equipment and supplies	4209
+basic science	ethics	127
+basic science	evidence-based medicine	891
+basic science	histology	1867
+basic science	history of medicine	411
+basic science	information science	13815
+basic science	law	270
+basic science	medical informatics	265
+basic science	microbiology	584
+basic science	molecular biology	20
+basic science	mycology	4488
+basic science	nutrition	6058
+basic science	organization and administration	1261
+basic science	parasitology	3700
+basic science	pharmacology	162
+basic science	pharmacy	3334
+basic science	physiology	44743
+basic science	phytotherapy	655
+basic science	research	845
+basic science	social affairs	195
+basic science	statistics	861
+basic science	toxicology	4326
+basic science	virology	34987
+hospital based	addictology	4301
+hospital based	anesthesiology	959
+hospital based	dermatology	6820
+hospital based	diagnostic imaging	2495
+hospital based	emergency medicine	880
+hospital based	forensic medicine	146
+hospital based	neurology	94856
+hospital based	nuclear medicine	189
+hospital based	nursing care	1033
+hospital based	pathology	38
+hospital based	psychiatry	19820
+hospital based	risk management	216
+hospital based	veterinary medicine	5179
+medical	aerospace medicine	131
+medical	allergy and immunology	50977
+medical	alternative medicine	126
+medical	ambulatory care	188
+medical	cardiology	92712
+medical	critical care	139
+medical	diagnosis	39095
+medical	disability	711
+medical	drugs	43306
+medical	endocrinology	18631
+medical	family medicine	136
+medical	gastroenterology	28805
+medical	genetics	72929
+medical	geriatrics	7902
+medical	hematology	17051
+medical	hemobiology-blood transfusion	11
+medical	hepatology	3411
+medical	home care	40
+medical	homeopathy	13
+medical	humanitarian medicine	181
+medical	infectious disease medicine	16778
+medical	internal medicine	1080
+medical	metabolism	11127
+medical	military medicine	827
+medical	mountain medicine	60
+medical	naval medicine	5
+medical	nephrology	4809
+medical	occupational medicine	2375
+medical	oncology	133393
+medical	pain	1719
+medical	palliative medicine	391
+medical	physical medicine and rehabilitation	212
+medical	physiotherapy	60
+medical	preventive medicine	1089
+medical	prison medicine	89
+medical	pulmonary disease	21577
+medical	rheumatology	43453
+medical	sleep medicine specialty	855
+medical	therapeutics	24065
+medical	thermal medicine	16
+medical	travel medicine	54
+medical	venereology	56
+pediatric	adolescent medicine	834
+pediatric	foetology	1184
+pediatric	neonatology	1209
+pediatric	pediatrics	28814
+pediatric	school medicine	62
+surgical/procedural	acupuncture	57
+surgical/procedural	burns	246
+surgical/procedural	dentistry	13953
+surgical/procedural	gynecology	8753
+surgical/procedural	mastology	1912
+surgical/procedural	neurosurgery	6
+surgical/procedural	obstetrics	2649
+surgical/procedural	ophthalmology	22728
+surgical/procedural	oral medicine	82
+surgical/procedural	oral surgical procedures	30
+surgical/procedural	orthodontics	1
+surgical/procedural	orthopedics	253
+surgical/procedural	otolaryngology	6439
+surgical/procedural	periodontics	60
+surgical/procedural	plastic and esthetic surgery	46
+surgical/procedural	podiatry	452
+surgical/procedural	reproductive medicine	3033
+surgical/procedural	sports medicine	1494
+surgical/procedural	surgery	30864
+surgical/procedural	thoracic and cardiovascular surgery	16
+surgical/procedural	transplantation	1693
+surgical/procedural	traumatology	6756
+surgical/procedural	urology	15972
+surgical/procedural	vascular medicine and surgery	3062
