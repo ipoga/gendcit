@@ -13,7 +13,7 @@
 
 require(tidyverse)
 load("regression_output.Rdata")
-load("ols_regression_output.Rdata")
+load("log_regression_output.Rdata")
 
 #----------------------------------------------------------
 # IRR Tweedie plot
