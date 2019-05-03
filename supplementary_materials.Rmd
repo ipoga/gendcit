@@ -177,5 +177,19 @@ rev %>%
   kable_styling(bootstrap_options = c("striped", "hover","condensed","responsive"),font_size = 10)
 ```
 
+## Search strategy
+
+Databases: PubMed and Google Scholar
+
+Years: 2006 through 2016.
+
+Search terms (all fields):  
+
+```
+("citation impact" OR "scientific impact" OR "scientific quality" OR "publication quality" OR "publication impact" OR "research impact" OR "citation performance" OR "citation rate*" OR "research performance" OR "scientific performance" OR "publication performance" OR citations) AND (Gender OR Sex) AND (health OR Medicine) 
+```
+
+Inclusion criteria: +Quantitative study, + numerical specifications on gender analysis of scientific performance, citation-related indices
+
 
 # References
