@@ -186,11 +186,11 @@ lrt.final %>%
 ```{r message=F}
 load("regression_table_nb.Rdata")
 nb.rt.final %>%
-  kable(digits = c(0,0,0,2,4,2,2,2), col.names = c("Outcome","Model","Predictor","Estimate","Std. Error","OR","OR.LCL","OR.UCL"),caption = "**Supplementary Table S8.** Regression results for the three negative binomial regressions with times cited (CS) as outcome.") %>%
+  kable(digits = c(0,0,0,2,4,2,2,2), col.names = c("Outcome","Model","Predictor","Estimate","Std. Error","IRR","IRR.LCL","IRR.UCL"),caption = "**Supplementary Table S8.** Regression results for the three negative binomial regressions with times cited (CS) as outcome.") %>%
   kable_styling(bootstrap_options = c("striped", "hover","condensed"),font_size = 11) %>%
-  footnote(general = c("OR : Odds ratios",
-           "OR.LCL : Lower confidence limit of odds ratios",
-           "OR.UCL : Upper confidence limit of odds ratios"))
+  footnote(general = c("IRR : Incidence rate ratios",
+           "IRR.LCL : Lower confidence limit of incidence rate ratios",
+           "IRR.UCL : Upper confidence limit of incidence rate ratios"))
 ```
 
 ## Model fit

@@ -268,13 +268,11 @@ disp.log.s <- c(ls.s1$dispersion,ls.s2$dispersion,ls.s3$dispersion)
 # will only work if you run all regression
 # prior to execution
 
-disp <- rbind(disp.tw,disp.tw.s,disp.tw.full,disp.tw.mncs,disp.log,disp.log.s,disp.nb)
+disp <- rbind(disp.tw,disp.tw.full,disp.tw.mncs,disp.log,disp.nb)
 disp.t <- tibble(disp.name = c("Tweedie regression, raw params",
-                          "Tweedie regression, standardized params",
                           "Tweedie regression, unmatched data",
                           "Tweedie regression, MNCS Journal quantiles",
                           "Logistic regression, raw params",
-                          "Logistic regression, standardized params",
                           "Negative binomial regression"), 
                  s1 = disp[,1],
                  s2 = disp[,2],
